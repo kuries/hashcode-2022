@@ -13,9 +13,9 @@ def scorer(num_of_customers, likes_dislikes, ingredients_list):
         l_cnt, l_ing = like.split(" ")[0], like.split(" ")[1:]
         d_cnt, d_ing = dislike.split(" ")[0], dislike.split(" ")[1:]
         
-        if len(set(l_ing)) != 0 and not set(l_ing).issubset(ingredients_list) and set(l_ing):
+        if not set(l_ing).issubset(ingredients_list):
             continue
-        if len(set(d_ing)) != 0 and set(d_ing).issubset(ingredients_list):
+        if len(set(d_ing).intersection(ingredients_list)) > 0:
             continue
         
         score += 1
@@ -36,4 +36,10 @@ if __name__ == '__main__':
     ingredients_list = solution.solution(num_of_customers, likes_dislikes)
     score = scorer(num_of_customers, likes_dislikes, ingredients_list)
     print("{0} Score is :".format(args.testcase), score)
+    ans_file = open("./answers/" + str(args.testcase)[15] + ".txt", "w+")
+    ans_file.write(str(len(ingredients_list)) + " ")
+    for i in range(len(ingredients_list) - 1):
+        ans_file.write(ingredients_list[i] + " ")
+    if len(ingredients_list) > 0:
+        ans_file.write(ingredients_list[-1])
     
