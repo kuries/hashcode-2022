@@ -35,5 +35,5 @@ if __name__ == '__main__':
     likes_dislikes = lines[1:]
     ingredients_list = solution.solution(num_of_customers, likes_dislikes)
     score = scorer(num_of_customers, likes_dislikes, ingredients_list)
-    print(score)
+    print("{0} Score is :".format(args.testcase), score)
     
